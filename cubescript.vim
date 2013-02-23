@@ -26,16 +26,16 @@ syn keyword CSguiCommands       guibackground skipwhite
 syn match CSoperators "[\>\<]=?[fs]?|[+\*\-=]f?|!?=[fs]]?|~|!|\?|[\^\&\|]~?|\|\||\&\&|\<\<|\>\>"
 
 " Integer with possible '-' sign
-syn match CSNumber "\-?\d\+"
+syn match CSNumber "-?\d\+"
 
 " Octal number with possible '-' sign
-syn match CSNumber "\-?0\d\+"
+syn match CSNumber "-?0\d\+"
 
 " Hexadecimal number with possible '-' sign
-syn match CSNumber "\-?0x\d\+"
+syn match CSNumber "-?0x\d\+"
 
 " Floating point number with decimal and possible '-' sign
-syn match CSNumber "\-?\d\+\.\d*"
+syn match CSNumber "-?\d\+\.\d*"
 
 " Alias lookup ($items or @items)
 syn match CSlookup "[$@]\+\S\+"
