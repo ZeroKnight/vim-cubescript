@@ -20,8 +20,10 @@ syn keyword CSmathCommands      acos asin atan cos div divf exp log2 log10 loge 
 syn keyword CSkeynames          MOUSE1 MOUSE2 MOUSE3 MOUSE4 MOUSE5 MOUSE6 MOUSE7 MOUSE8 MOUSE9 MOUSE10 BACKSPACE TAB CLEAR RETURN PAUSE ESCAPE SPACE EXCLAIM QUOTEDBL HASH DOLLAR AMPERSAND QUOTE LEFTPAREN RIGHTPAREN ASTERISK PLUS COMMA MINUS PERIOD SLASH COLON SEMICOLON LESS EQUALS GREATER QUESTION AT LEFTBRACKET BACKSLASH RIGHTBRACKET CARET UNDERSCORE BACKQUOTE DELETE KP0 KP1 KP2 KP3 KP4 KP5 KP6 KP7 KP8 KP9 KP_PERIOD KP_DIVIDE KP_MULTIPLY KP_MINUS KP_PLUS KP_ENTER KP_EQUALS UP DOWN RIGHT LEFT INSERT HOME END PAGEUP PAGEDOWN F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 NUMLOCK CAPSLOCK SCROLLOCK RSHIFT LSHIFT RCTRL LCTRL RALT LALT RMETA LMETA LSUPER RSUPER MODE COMPOSE HELP PRINT SYSREQ BREAK MENU skipwhite
 syn keyword CSotherGetCommands  getloadweap getmaplist getpointer getserver getvote getweap skipwhite
 syn keyword CSguiCommands       guibackground skipwhite
+syn keyword CStodo              contained TODO FIXME NOTE
 
 
+" TODO: Break this up into multiple matches
 " Operators
 syn match CSoperators "[\>\<]=?[fs]?|[+\*\-=]f?|!?=[fs]]?|~|!|\?|[\^\&\|]~?|\|\||\&\&|\<\<|\>\>"
 
@@ -41,4 +43,21 @@ syn match CSnumber "-?\d\+\.\d*"
 syn match CSlookup "[$@]\+\S\+"
 
 " Escape
-syn match CSescape "\^[a-zA-Z0-9]"
+syn match CSescape "\^\S"
+
+" TODO: finish this
+" Format Escape
+syn match CSescapeFormat "\^f ..."
+
+" Comment
+syn match CScomment "//.*$" contains=CStodo
+
+" `format` argument
+syn match CSformatArg "%\d" contained
+
+
+" Strings
+syn region CSstring start="\"" end="\"" transparent contains=CSescape,CSformatArg
+
+" Blocks
+syn region CSblock start="\[" end="\]" transparent
