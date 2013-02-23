@@ -28,7 +28,7 @@ syn match CSoperators "[\>\<]=?[fs]?|[+\*\-=]f?|!?=[fs]]?|~|!|\?|[\^\&\|]~?|\|\|
 " Integer with possible '-' sign
 syn match CSnumber "-?\d\+"
 
-" Octal number with possible '-' sign
+" C-Style Octal number with possible '-' sign
 syn match CSnumber "-?0\d\+"
 
 " Hexadecimal number with possible '-' sign
