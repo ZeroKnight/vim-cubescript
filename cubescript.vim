@@ -1,6 +1,6 @@
 " Vim syntax file
-" Language: Cube Engine, CubeScript
-" See http://cubeengine.com
+" Language: Cube Engine, CubeScript (See http://cubeengine.com)
+" Tailored mostly to Red Eclipse (See http://redeclipse.net)
 "
 " Maintainer: Alex "ZeroKnight" George (xzeroknightx@gmail.com)
 " Last change:
