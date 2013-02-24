@@ -23,10 +23,17 @@ syn keyword CSguiCommands       guibackground skipwhite
 syn keyword CStodo              contained TODO FIXME NOTE
 
 
-" TODO: Break this up into multiple matches
-" Operators
-syn match CSoperators "[\>\<]=?[fs]?|[+\*\-=]f?|!?=[fs]]?|~|!|\?|[\^\&\|]~?|\|\||\&\&|\<\<|\>\>"
+" ===== Operators =============================================
+" Bitwise
+syn match CSoperators "[\|&\^]~?|>>|<<"
 
+" Boolean/Ternary
+syn match CSoperators "\|\||&&|\?"
+
+" Equality
+syn match CSoperators "[!><\*+\-=]\+[fs]?"
+
+" ===== Numbers ===============================================
 " Integer with possible '-' sign
 syn match CSnumber "-?\d\+"
 
@@ -39,8 +46,9 @@ syn match CSnumber "-?0x\d\+"
 " Floating point number with decimal and possible '-' sign
 syn match CSnumber "-?\d\+\.\d*"
 
-" Alias lookup ($items or @items)
-syn match CSlookup "[$@]\+\S\+"
+" ===== Expandable Variables ==================================
+" Alias lookup (eg. $items, @items, @@@stuff)
+syn match CSlookup "[\$@]\+\S\+"
 
 " Escape
 syn match CSescape "\^\S"
