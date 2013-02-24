@@ -48,24 +48,35 @@ syn match CSnumber "-?\d\+\.\d*"
 
 " ===== Expandable Variables ==================================
 " Alias lookup (eg. $items, @items, @@@stuff)
-syn match CSlookup "[\$@]\+\S\+"
+" NOTE: May need to get creative for things like @[...], @[$foo@bar], etc
+syn match CSlookup "(\$\+|@\+)[^\$@\s]\+"
 
+" `format` argument
+syn match CSfArg "%\d" contained
+
+" ===== Escape Sequences ======================================
 " Escape
 syn match CSescape "\^\S"
 
-" TODO: finish this
 " Format Escape
-syn match CSescapeFormat "\^f ..."
+syn match CSescapeF "\^f\S"
+
+" Format Escape (blinking)
+syn match CSescapeFb "\^fz\S\S"
+
+" Format Escape (RGB/Hex Sequence)
+syn match CSescapeFrh "\^f\[(0x)?[a-fA-F0-9]\+\]"
+
+" Format Escape (image)
+syn match CSescapeFi "\^f\(\S\+\)"
+
 
 " Comment
 syn match CScomment "//.*$" contains=CStodo
 
-" `format` argument
-syn match CSformatArg "%\d" contained
-
 
 " Strings
-syn region CSstring start="\"" end="\"" transparent contains=CSescape,CSformatArg
+syn region CSstring start="\"" end="\"" transparent contains=CSescape,CSfArg
 
 " Blocks
 syn region CSblock start="\[" end="\]" transparent
