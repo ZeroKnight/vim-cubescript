@@ -58,7 +58,7 @@ syn match csNumber /-?\d\+\.\d*/
 syn match csLookup /(\$\+|@\+)[^\$@\s]\+/
 
 " `format` argument
-syn match csFArg "%\d" contained
+syn match csFArg /%\d/ contained
 
 " ===== Escape Sequences ======================================
 " Escape
