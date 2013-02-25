@@ -31,61 +31,61 @@ syn keyword csTodo              contained TODO FIXME NOTE
 
 " ===== Operators =============================================
 " Bitwise
-syn match csOperators "[\|&\^]~?|>>|<<"
+syn match csOperators /[\|&\^]~?|>>|<</
 
 " Boolean/Ternary
-syn match csOperators "\|\||&&|\?"
+syn match csOperators /\|\||&&|\?/
 
 " Equality
-syn match csOperators "[!><\*+\-=]\+[fs]?"
+syn match csOperators /[!><\*+\-=]\+[fs]?/
 
 " ===== Numbers ===============================================
 " Integer with possible '-' sign
-syn match csNumber "-?\d\+"
+syn match csNumber /-?\d\+/
 
 " C-Style Octal number with possible '-' sign
-syn match csNumber "-?0\d\+"
+syn match csNumber /-?0\d\+/
 
 " Hexadecimal number with possible '-' sign
-syn match csNumber "-?0x\d\+"
+syn match csNumber /-?0x\d\+/
 
 " Floating point number with decimal and possible '-' sign
-syn match csNumber "-?\d\+\.\d*"
+syn match csNumber /-?\d\+\.\d*/
 
 " ===== Expandable Variables ==================================
 " Alias lookup (eg. $items, @items, @@@stuff)
 " NOTE: May need to get creative for things like @[...], @[$foo@bar], etc
-syn match csLookup "(\$\+|@\+)[^\$@\s]\+"
+syn match csLookup /(\$\+|@\+)[^\$@\s]\+/
 
 " `format` argument
 syn match csFArg "%\d" contained
 
 " ===== Escape Sequences ======================================
 " Escape
-syn match csEscape "\^[ntf\^\"]"
+syn match csEscape /\^[ntf\^\"]/
 
 " Format Escape (colors)
-syn match csEscapeF "\^f[a-zA-Z0-9]"
+syn match csEscapeF /\^f[a-zA-Z0-9]/
 
 " Format Escape (blinking)
-syn match csEscapeFb "\^fz[a-zA-Z0-9]{1}"
+syn match csEscapeFb /\^fz[a-zA-Z0-9]{1}/
 
 " Format Escape (RGB/Hex Sequence)
-syn match csEscapeFrh "\^f\[(0x)?[a-fA-F0-9]\+\]"
+syn match csEscapeFrh /\^f\[(0x)?[a-fA-F0-9]\+\]/
 
 " Format Escape (image)
-syn match csEscapeFi "\^f\(\S\+\)"
+syn match csEscapeFi /\^f\(\S\+\)/
 
 
 " Comment
-syn match csComment "//.*$" contains=CStodo
+syn match csComment ///.*$/ contains=CStodo
 
 
 " Strings
-syn region csString start="\"" skip="\^\"" end="\"" transparent contains=CSescape,CSfArg
+syn region csString start=/"/ skip=/\^"/ end=/"/ transparent contains=CSescape,CSfArg
 
 " Blocks
-syn region csBlock start="\[" end="\]" transparent
+syn region csBlock start=/\[/ end=/\]/ transparent
 
 
 syn sync ccomment csComment
