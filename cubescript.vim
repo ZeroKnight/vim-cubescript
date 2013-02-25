@@ -56,13 +56,13 @@ syn match csFArg "%\d" contained
 
 " ===== Escape Sequences ======================================
 " Escape
-syn match csEscape "\^\S"
+syn match csEscape "\^[ntf\^\"]"
 
-" Format Escape
-syn match csEscapeF "\^f\S"
+" Format Escape (colors)
+syn match csEscapeF "\^f[a-zA-Z0-9]"
 
 " Format Escape (blinking)
-syn match csEscapeFb "\^fz\S\S"
+syn match csEscapeFb "\^fz[a-zA-Z0-9]{1}"
 
 " Format Escape (RGB/Hex Sequence)
 syn match csEscapeFrh "\^f\[(0x)?[a-fA-F0-9]\+\]"
