@@ -13,6 +13,12 @@ endif
 " need something that will check if [cfg] is being used, and clear it, and use
 " this instead
 
+" ===== Statements ============================================
+syn keyword     csConditional   if cond
+syn keyword     csRepeat        do loop loopconcat loopconcatword loopfiles looplist loopwhile while
+syn keyword     csLabel         case casef cases
+
+" TODO: reorganize below into the vim syntax naming convention
 syn keyword csBasicCommands     alias at case casef cases clearsleep complete concat concatword cond conout conskip do echo error escape exec exists filter format history if indexof inputcommand keymap listclients listcomplete listdel listfind listlen listsplice local loop loopconcat loopconcatword loopfiles looplist loopwhile nodebug onrelease precf prettylist push quit resetvar result saycommand searchbinds searcheditbinds searchspecbinds setcomplete setdesc setinfo setpersist setpriv shrinklist sleep strcasecmp strcmp strlen strncasecmp strncmp strreplace strstr sublist substr toggleconsole while worldalias writecfg writeobj writevars skipwhite
 syn keyword csBasicGetCommands  getalias getclienthost getclientname getclientnum getclientteam getcolour getfps getfvarmin getfvarmax getmillis getmodel getname getstate getteam getteamcolour getteamicon gettime getvar getvardef getvarflags getvariable getvarmin getvarmax getvartype getversion skipwhite
 syn keyword csBindCommands      bind editbind specbind waitbind getbind geteditbind getspecbind getwaitbind skipwhite
@@ -80,3 +86,6 @@ syn region csString start="\"" skip="\^\"" end="\"" transparent contains=CSescap
 
 " Blocks
 syn region csBlock start="\[" end="\]" transparent
+
+
+syn sync ccomment csComment
