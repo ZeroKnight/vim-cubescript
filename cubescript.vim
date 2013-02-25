@@ -76,7 +76,7 @@ syn match csComment "//.*$" contains=CStodo
 
 
 " Strings
-syn region csString start="\"" end="\"" transparent contains=CSescape,CSfArg
+syn region csString start="\"" skip="\^\"" end="\"" transparent contains=CSescape,CSfArg
 
 " Blocks
 syn region csBlock start="\[" end="\]" transparent
