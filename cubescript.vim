@@ -78,11 +78,11 @@ syn match csEscapeFi /\^f\(\S\+\)/
 
 
 " Comment
-syn match csComment ///.*$/ contains=CStodo
+syn match csComment ///.*$/ contains=csTodo
 
 
 " Strings
-syn region csString start=/"/ skip=/\^"/ end=/"/ transparent contains=CSescape,CSfArg
+syn region csString start=/"/ skip=/\^"/ end=/"/ transparent contains=csEscape,csFArg
 
 " Blocks
 syn region csBlock start=/\[/ end=/\]/ transparent
