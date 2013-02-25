@@ -13,70 +13,70 @@ endif
 " need something that will check if [cfg] is being used, and clear it, and use
 " this instead
 
-syn keyword CSbasicCommands     alias at case casef cases clearsleep complete concat concatword cond conout conskip do echo error escape exec exists filter format history if indexof inputcommand keymap listclients listcomplete listdel listfind listlen listsplice local loop loopconcat loopconcatword loopfiles looplist loopwhile nodebug onrelease precf prettylist push quit resetvar result saycommand searchbinds searcheditbinds searchspecbinds setcomplete setdesc setinfo setpersist setpriv shrinklist sleep strcasecmp strcmp strlen strncasecmp strncmp strreplace strstr sublist substr toggleconsole while worldalias writecfg writeobj writevars skipwhite
-syn keyword CSbasicGetCommands  getalias getclienthost getclientname getclientnum getclientteam getcolour getfps getfvarmin getfvarmax getmillis getmodel getname getstate getteam getteamcolour getteamicon gettime getvar getvardef getvarflags getvariable getvarmin getvarmax getvartype getversion skipwhite
-syn keyword CSbindCommands      bind editbind specbind waitbind getbind geteditbind getspecbind getwaitbind skipwhite
-syn keyword CSmathCommands      acos asin atan cos div divf exp log2 log10 loge max maxf min minf mod modf pow rnd sin sqrt tan skipwhite
-syn keyword CSkeynames          MOUSE1 MOUSE2 MOUSE3 MOUSE4 MOUSE5 MOUSE6 MOUSE7 MOUSE8 MOUSE9 MOUSE10 BACKSPACE TAB CLEAR RETURN PAUSE ESCAPE SPACE EXCLAIM QUOTEDBL HASH DOLLAR AMPERSAND QUOTE LEFTPAREN RIGHTPAREN ASTERISK PLUS COMMA MINUS PERIOD SLASH COLON SEMICOLON LESS EQUALS GREATER QUESTION AT LEFTBRACKET BACKSLASH RIGHTBRACKET CARET UNDERSCORE BACKQUOTE DELETE KP0 KP1 KP2 KP3 KP4 KP5 KP6 KP7 KP8 KP9 KP_PERIOD KP_DIVIDE KP_MULTIPLY KP_MINUS KP_PLUS KP_ENTER KP_EQUALS UP DOWN RIGHT LEFT INSERT HOME END PAGEUP PAGEDOWN F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 NUMLOCK CAPSLOCK SCROLLOCK RSHIFT LSHIFT RCTRL LCTRL RALT LALT RMETA LMETA LSUPER RSUPER MODE COMPOSE HELP PRINT SYSREQ BREAK MENU skipwhite
-syn keyword CSotherGetCommands  getloadweap getmaplist getpointer getserver getvote getweap skipwhite
-syn keyword CSguiCommands       guibackground skipwhite
-syn keyword CStodo              contained TODO FIXME NOTE
+syn keyword csBasicCommands     alias at case casef cases clearsleep complete concat concatword cond conout conskip do echo error escape exec exists filter format history if indexof inputcommand keymap listclients listcomplete listdel listfind listlen listsplice local loop loopconcat loopconcatword loopfiles looplist loopwhile nodebug onrelease precf prettylist push quit resetvar result saycommand searchbinds searcheditbinds searchspecbinds setcomplete setdesc setinfo setpersist setpriv shrinklist sleep strcasecmp strcmp strlen strncasecmp strncmp strreplace strstr sublist substr toggleconsole while worldalias writecfg writeobj writevars skipwhite
+syn keyword csBasicGetCommands  getalias getclienthost getclientname getclientnum getclientteam getcolour getfps getfvarmin getfvarmax getmillis getmodel getname getstate getteam getteamcolour getteamicon gettime getvar getvardef getvarflags getvariable getvarmin getvarmax getvartype getversion skipwhite
+syn keyword csBindCommands      bind editbind specbind waitbind getbind geteditbind getspecbind getwaitbind skipwhite
+syn keyword csMathCommands      acos asin atan cos div divf exp log2 log10 loge max maxf min minf mod modf pow rnd sin sqrt tan skipwhite
+syn keyword csKeynames          MOUSE1 MOUSE2 MOUSE3 MOUSE4 MOUSE5 MOUSE6 MOUSE7 MOUSE8 MOUSE9 MOUSE10 BACKSPACE TAB CLEAR RETURN PAUSE ESCAPE SPACE EXCLAIM QUOTEDBL HASH DOLLAR AMPERSAND QUOTE LEFTPAREN RIGHTPAREN ASTERISK PLUS COMMA MINUS PERIOD SLASH COLON SEMICOLON LESS EQUALS GREATER QUESTION AT LEFTBRACKET BACKSLASH RIGHTBRACKET CARET UNDERSCORE BACKQUOTE DELETE KP0 KP1 KP2 KP3 KP4 KP5 KP6 KP7 KP8 KP9 KP_PERIOD KP_DIVIDE KP_MULTIPLY KP_MINUS KP_PLUS KP_ENTER KP_EQUALS UP DOWN RIGHT LEFT INSERT HOME END PAGEUP PAGEDOWN F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 NUMLOCK CAPSLOCK SCROLLOCK RSHIFT LSHIFT RCTRL LCTRL RALT LALT RMETA LMETA LSUPER RSUPER MODE COMPOSE HELP PRINT SYSREQ BREAK MENU skipwhite
+syn keyword csOtherGetCommands  getloadweap getmaplist getpointer getserver getvote getweap skipwhite
+syn keyword csGuiCommands       guibackground skipwhite
+syn keyword csTodo              contained TODO FIXME NOTE
 
 
 " ===== Operators =============================================
 " Bitwise
-syn match CSoperators "[\|&\^]~?|>>|<<"
+syn match csOperators "[\|&\^]~?|>>|<<"
 
 " Boolean/Ternary
-syn match CSoperators "\|\||&&|\?"
+syn match csOperators "\|\||&&|\?"
 
 " Equality
-syn match CSoperators "[!><\*+\-=]\+[fs]?"
+syn match csOperators "[!><\*+\-=]\+[fs]?"
 
 " ===== Numbers ===============================================
 " Integer with possible '-' sign
-syn match CSnumber "-?\d\+"
+syn match csNumber "-?\d\+"
 
 " C-Style Octal number with possible '-' sign
-syn match CSnumber "-?0\d\+"
+syn match csNumber "-?0\d\+"
 
 " Hexadecimal number with possible '-' sign
-syn match CSnumber "-?0x\d\+"
+syn match csNumber "-?0x\d\+"
 
 " Floating point number with decimal and possible '-' sign
-syn match CSnumber "-?\d\+\.\d*"
+syn match csNumber "-?\d\+\.\d*"
 
 " ===== Expandable Variables ==================================
 " Alias lookup (eg. $items, @items, @@@stuff)
 " NOTE: May need to get creative for things like @[...], @[$foo@bar], etc
-syn match CSlookup "(\$\+|@\+)[^\$@\s]\+"
+syn match csLookup "(\$\+|@\+)[^\$@\s]\+"
 
 " `format` argument
-syn match CSfArg "%\d" contained
+syn match csFArg "%\d" contained
 
 " ===== Escape Sequences ======================================
 " Escape
-syn match CSescape "\^\S"
+syn match csEscape "\^\S"
 
 " Format Escape
-syn match CSescapeF "\^f\S"
+syn match csEscapeF "\^f\S"
 
 " Format Escape (blinking)
-syn match CSescapeFb "\^fz\S\S"
+syn match csEscapeFb "\^fz\S\S"
 
 " Format Escape (RGB/Hex Sequence)
-syn match CSescapeFrh "\^f\[(0x)?[a-fA-F0-9]\+\]"
+syn match csEscapeFrh "\^f\[(0x)?[a-fA-F0-9]\+\]"
 
 " Format Escape (image)
-syn match CSescapeFi "\^f\(\S\+\)"
+syn match csEscapeFi "\^f\(\S\+\)"
 
 
 " Comment
-syn match CScomment "//.*$" contains=CStodo
+syn match csComment "//.*$" contains=CStodo
 
 
 " Strings
-syn region CSstring start="\"" end="\"" transparent contains=CSescape,CSfArg
+syn region csString start="\"" end="\"" transparent contains=CSescape,CSfArg
 
 " Blocks
-syn region CSblock start="\[" end="\]" transparent
+syn region csBlock start="\[" end="\]" transparent
