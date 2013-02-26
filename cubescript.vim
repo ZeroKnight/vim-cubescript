@@ -14,78 +14,75 @@ endif
 " this instead
 
 " ===== Statements ============================================
-syn keyword     csConditional   if cond
-syn keyword     csRepeat        do loop loopconcat loopconcatword loopfiles looplist loopwhile while
-syn keyword     csLabel         case casef cases
+syn keyword cubescriptConditional       if cond
+syn keyword cubescriptRepeat            do loop loopconcat loopconcatword loopfiles looplist loopwhile while
+syn keyword cubescriptLabel             case casef cases
 
-" TODO: reorganize below into the vim syntax naming convention
-syn keyword csBasicCommands     alias at case casef cases clearsleep complete concat concatword cond conout conskip do echo error escape exec exists filter format history if indexof inputcommand keymap listclients listcomplete listdel listfind listlen listsplice local loop loopconcat loopconcatword loopfiles looplist loopwhile nodebug onrelease precf prettylist push quit resetvar result saycommand searchbinds searcheditbinds searchspecbinds setcomplete setdesc setinfo setpersist setpriv shrinklist sleep strcasecmp strcmp strlen strncasecmp strncmp strreplace strstr sublist substr toggleconsole while worldalias writecfg writeobj writevars skipwhite
-syn keyword csBasicGetCommands  getalias getclienthost getclientname getclientnum getclientteam getcolour getfps getfvarmin getfvarmax getmillis getmodel getname getstate getteam getteamcolour getteamicon gettime getvar getvardef getvarflags getvariable getvarmin getvarmax getvartype getversion skipwhite
-syn keyword csBindCommands      bind editbind specbind waitbind getbind geteditbind getspecbind getwaitbind skipwhite
-syn keyword csMathCommands      acos asin atan cos div divf exp log2 log10 loge max maxf min minf mod modf pow rnd sin sqrt tan skipwhite
-syn keyword csKeynames          MOUSE1 MOUSE2 MOUSE3 MOUSE4 MOUSE5 MOUSE6 MOUSE7 MOUSE8 MOUSE9 MOUSE10 BACKSPACE TAB CLEAR RETURN PAUSE ESCAPE SPACE EXCLAIM QUOTEDBL HASH DOLLAR AMPERSAND QUOTE LEFTPAREN RIGHTPAREN ASTERISK PLUS COMMA MINUS PERIOD SLASH COLON SEMICOLON LESS EQUALS GREATER QUESTION AT LEFTBRACKET BACKSLASH RIGHTBRACKET CARET UNDERSCORE BACKQUOTE DELETE KP0 KP1 KP2 KP3 KP4 KP5 KP6 KP7 KP8 KP9 KP_PERIOD KP_DIVIDE KP_MULTIPLY KP_MINUS KP_PLUS KP_ENTER KP_EQUALS UP DOWN RIGHT LEFT INSERT HOME END PAGEUP PAGEDOWN F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 NUMLOCK CAPSLOCK SCROLLOCK RSHIFT LSHIFT RCTRL LCTRL RALT LALT RMETA LMETA LSUPER RSUPER MODE COMPOSE HELP PRINT SYSREQ BREAK MENU skipwhite
-syn keyword csOtherGetCommands  getloadweap getmaplist getpointer getserver getvote getweap skipwhite
-syn keyword csGuiCommands       guibackground skipwhite
-syn keyword csTodo              contained TODO FIXME NOTE
+syn keyword cubescriptStatement         alias clearsleep exec exists history local push result
+
+syn keyword cubescriptStatementString   concat concatword conout echo error escape filter format strcasecmp strcmp strlen strncasecmp strncmp strreplace strstr substr
+syn keyword cubescriptStatementList     at indexof listdel listfind listlen listsplice prettylist shrinklist sublist
+
+syn keyword cubescriptStatementGet      getalias getclientcolour getclienthandle getclienthost getclientmodel getclientname getclientnum getclientpriv getclientteam getclientvanity getclientvitem getdemo getfps getfvarmin getfvarmax getintermission getloadweap getload getmap getmaplist getmillis getmodelname getname getplayercolour getplayermodel getplayername getplayerstate getplayerteam getplayerteamcolour getplayerteamicon getplayervanity getplayervitem getpointer getreptex getseltex getserver gettex gettexname gettime getvanity getvar getvardef getvarflags getvariable getvarmin getvarmax getvartype getversion getvote getweap
+
+syn keyword cubescriptStatementBind     bind editbind specbind waitbind getbind geteditbind getspecbind getwaitbind searchbinds searcheditbinds searchspecbinds searchwaitbinds keymap onrelease
+
+syn keyword cubescriptStatementGui      guibackground guibar guibitfield guibgcolour guiblend guibody guibordercolour guibutton guicheckbox guiclicktab guicount guicursortex guieditor guifield guifont guiheader guiimage guikeyfield guilinesize guilist guilistslider guimodify guinameslider guinoautotab guinohitfx guimodelpreview guioverlaytex guipasses guiplayerpreview guiprogress guiradio guirolloveraction guirolloverimgaction guirolloverimgpath guirollovername guiscaletime guisepsize guishadow guishowtitle guislice guislider guislidertex guispring guistayopen guistrut guitab guitext guititle
+
+syn keyword cubescriptTodo              contained TODO FIXME NOTE
 
 
 " ===== Operators =============================================
+syn keyword cubescriptOperators     acos asin atan cos div divf exp log2 log10 loge max maxf min minf mod modf pow precf rnd sin sqrt tan
 " Bitwise
-syn match csOperators /[\|&\^]~?|>>|<</
-
+syn match   cubescriptOperators     /[|&\^]~?\|>>\|<</
 " Boolean/Ternary
-syn match csOperators /\|\||&&|\?/
-
+syn match   cubescriptOperators     /||\|&&\|\?/
 " Equality
-syn match csOperators /[!><\*+\-=]\+[fs]?/
+syn match   cubescriptOperators     /[!><\*+\-=]\+[fs]?/
 
 " ===== Numbers ===============================================
 " Integer with possible '-' sign
-syn match csNumber /-?\d\+/
-
+syn match   cubescriptNumber        /-?\d\+/
 " C-Style Octal number with possible '-' sign
-syn match csNumber /-?0\d\+/
-
+syn match   cubescriptNumber        /-?0\d\+/
 " Hexadecimal number with possible '-' sign
-syn match csNumber /-?0x\d\+/
-
+syn match   cubescriptNumber        /-?0x\d\+/
 " Floating point number with decimal and possible '-' sign
-syn match csNumber /-?\d\+\.\d*/
+syn match   cubescriptNumber        /-?\d\+\.\d*/
 
 " ===== Expandable Variables ==================================
 " Alias lookup (eg. $items, @items, @@@stuff)
 " NOTE: May need to get creative for things like @[...], @[$foo@bar], etc
-syn match csLookup /(\$\+|@\+)[^\$@\s]\+/
+syn match   cubescriptIdentifier    /(\$\+\|@\+)[^\$@\s]\+/
+" Format Argument (used with `format` commmand)
+syn match   cubescriptFormatArg     /%\d/ contained
 
-" `format` argument
-syn match csFArg /%\d/ contained
-
+" TODO: Rename this appropriately, or find a way to better organize them
 " ===== Escape Sequences ======================================
-" Escape
-syn match csEscape /\^[ntf\^\"]/
-
+" Escapes
+syn match   cubescriptSpecial       /\^[ntf\^\"]/
 " Format Escape (colors)
-syn match csEscapeF /\^f[a-zA-Z0-9]/
-
+syn match   cubescriptEscapeF       /\^f[a-zA-Z0-9]/
 " Format Escape (blinking)
-syn match csEscapeFb /\^fz[a-zA-Z0-9]{1}/
-
+syn match   cubescriptEscapeFb      /\^fz[a-zA-Z0-9]{1}/
 " Format Escape (RGB/Hex Sequence)
-syn match csEscapeFrh /\^f\[(0x)?[a-fA-F0-9]\+\]/
-
+syn match   cubescriptEscapeFrh     /\^f\[(0x)?[a-fA-F0-9]\+\]/
 " Format Escape (image)
-syn match csEscapeFi /\^f\(\S\+\)/
+syn match   cubescriptEscapeFi      /\^f\(\S\+\)/
 
 
 " Comment
-syn match csComment ///.*$/ contains=csTodo
+syn match   cubescriptComment       ///.*$/ contains=cubescriptTodo
 
 
 " Strings
-syn region csString start=/"/ skip=/\^"/ end=/"/ transparent contains=csEscape,csFArg
-
+syn region  cubescriptString        start=/"/ skip=/\^"/ end=/"/ transparent contains=cubescriptEscape,cubescriptFArg
 " Blocks
-syn region csBlock start=/\[/ end=/\]/ transparent
+syn region  cubescriptBlock         start=/\[/ end=/\]/ transparent
 
 
-syn sync ccomment csComment
+syn sync    ccomment                cubescriptComment
+
+" NOTE: Link this to 'Constant'
+syn keyword cubescriptKeyNames          MOUSE1 MOUSE2 MOUSE3 MOUSE4 MOUSE5 MOUSE6 MOUSE7 MOUSE8 MOUSE9 MOUSE10 BACKSPACE TAB CLEAR RETURN PAUSE ESCAPE SPACE EXCLAIM QUOTEDBL HASH DOLLAR AMPERSAND QUOTE LEFTPAREN RIGHTPAREN ASTERISK PLUS COMMA MINUS PERIOD SLASH COLON SEMICOLON LESS EQUALS GREATER QUESTION AT LEFTBRACKET BACKSLASH RIGHTBRACKET CARET UNDERSCORE BACKQUOTE DELETE KP0 KP1 KP2 KP3 KP4 KP5 KP6 KP7 KP8 KP9 KP_PERIOD KP_DIVIDE KP_MULTIPLY KP_MINUS KP_PLUS KP_ENTER KP_EQUALS UP DOWN RIGHT LEFT INSERT HOME END PAGEUP PAGEDOWN F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 NUMLOCK CAPSLOCK SCROLLOCK RSHIFT LSHIFT RCTRL LCTRL RALT LALT RMETA LMETA LSUPER RSUPER MODE COMPOSE HELP PRINT SYSREQ BREAK MENU
