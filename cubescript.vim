@@ -35,7 +35,7 @@ syn keyword cubescriptTodo              contained TODO FIXME NOTE
 " ===== Operators =============================================
 syn keyword cubescriptOperators         acos asin atan cos div divf exp log2 log10 loge max maxf min minf mod modf pow precf rnd sin sqrt tan
 " Bitwise
-syn match   cubescriptOperators         /[|&\^]~?\|>>\|<</
+syn match   cubescriptOperators         /[|&^]~?\|>>\|<</
 " Boolean/Ternary
 syn match   cubescriptOperators         /||\|&&\|\?/
 " Equality
@@ -47,7 +47,7 @@ syn match   cubescriptNumber            /-?\d\+/
 " C-Style Octal number with possible '-' sign
 syn match   cubescriptNumber            /-?0\d\+/
 " Hexadecimal number with possible '-' sign
-syn match   cubescriptNumber            /-?0x\d\+/
+syn match   cubescriptNumber            /-?0x[a-fA-F\d]{1,6}/
 " Floating point number with decimal and possible '-' sign
 syn match   cubescriptNumber            /-?\d\+\.\d*/
 
@@ -60,15 +60,23 @@ syn match   cubescriptFormatArg         /%\d/ contained
 
 " ===== Escape Sequences ======================================
 " Escapes
-syn match   cubescriptEscape            /\^[ntf\^\"]/
+syn match   cubescriptEscape            /\^[ntf^"]/
 " Basic color escape (ie. ^fy, ^f2, etc) 
-syn match   cubescriptEscapeCol         /\^f[a-zA-Z0-9]/
+syn match   cubescriptEscapeCol         /\^f[a-zA-Z\d]/
 " Blinking color escape (ie. ^fzgp)
-syn match   cubescriptEscapeColBlink    /\^fz[a-zA-Z0-9]{1}/
+syn match   cubescriptEscapeColBlink    /\^fz[a-zA-Z\d]{1}/
 " Advanced color escape (RGB/Hex Sequence)
-syn match   cubescriptEscapeColAdv      /\^f\[(0x)?[a-fA-F0-9]\+\]/
+syn match   cubescriptEscapeColAdv      /\^f\[(0x[a-fA-F\d]{1,6}\|\d\+)\]/
 " Image insertion escape (ie. ^f(textures/bomb))
 syn match   cubescriptEscapeImg         /\^f\(\S\+\)/
+" Erroneously formed escape sequences
+syn match   cubescriptEscapeError       /\^[^ntf^"]/
+syn match   cubescriptEscapeError       /\^f[^a-zA-Z\d]/
+syn match   cubescriptEscapeError       /\^fz\([^a-zA-Z\d]{1,2}\|[a-zA-Z\d][^a-zA-Z\d]\)/
+" FIXME: That's close, but not working. Needs to be fixed up to not lump in
+" correct sequences
+" syn match   cubescriptEscapeColAdv      /\^f\[(0x((x*[a-fA-F\d]x*)*|[xa-fA-F\d]{7,}?)|(\D?)*\d*\D+\d*(\D?)*)\]/
+syn match   cubescriptEscapeError       /\^f\((\s?)*\S*\s+\S*(\s?)*\)/
 
 
 " Comment
@@ -76,7 +84,7 @@ syn match   cubescriptComment           ///.*$/ contains=cubescriptTodo
 
 
 " Strings
-syn region  cubescriptString            start=/"/ skip=/\^"/ end=/"/ transparent contains=cubescriptEscape,cubescriptFArg
+syn region  cubescriptString            start=/"/ skip=/\^"/ end=/"/ transparent contains=cubescriptEscape,cubescriptFormatArg
 " Blocks
 syn region  cubescriptBlock             start=/\[/ end=/\]/ transparent
 
