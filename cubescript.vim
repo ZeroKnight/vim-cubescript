@@ -33,56 +33,55 @@ syn keyword cubescriptTodo              contained TODO FIXME NOTE
 
 
 " ===== Operators =============================================
-syn keyword cubescriptOperators     acos asin atan cos div divf exp log2 log10 loge max maxf min minf mod modf pow precf rnd sin sqrt tan
+syn keyword cubescriptOperators         acos asin atan cos div divf exp log2 log10 loge max maxf min minf mod modf pow precf rnd sin sqrt tan
 " Bitwise
-syn match   cubescriptOperators     /[|&\^]~?\|>>\|<</
+syn match   cubescriptOperators         /[|&\^]~?\|>>\|<</
 " Boolean/Ternary
-syn match   cubescriptOperators     /||\|&&\|\?/
+syn match   cubescriptOperators         /||\|&&\|\?/
 " Equality
-syn match   cubescriptOperators     /[!><\*+\-=]\+[fs]?/
+syn match   cubescriptOperators         /[!><\*+\-=]\+[fs]?/
 
 " ===== Numbers ===============================================
 " Integer with possible '-' sign
-syn match   cubescriptNumber        /-?\d\+/
+syn match   cubescriptNumber            /-?\d\+/
 " C-Style Octal number with possible '-' sign
-syn match   cubescriptNumber        /-?0\d\+/
+syn match   cubescriptNumber            /-?0\d\+/
 " Hexadecimal number with possible '-' sign
-syn match   cubescriptNumber        /-?0x\d\+/
+syn match   cubescriptNumber            /-?0x\d\+/
 " Floating point number with decimal and possible '-' sign
-syn match   cubescriptNumber        /-?\d\+\.\d*/
+syn match   cubescriptNumber            /-?\d\+\.\d*/
 
 " ===== Expandable Variables ==================================
 " Alias lookup (eg. $items, @items, @@@stuff)
 " NOTE: May need to get creative for things like @[...], @[$foo@bar], etc
-syn match   cubescriptIdentifier    /(\$\+\|@\+)[^\$@\s]\+/
+syn match   cubescriptIdentifier        /(\$\+\|@\+)[^\$@\s]\+/
 " Format Argument (used with `format` commmand)
-syn match   cubescriptFormatArg     /%\d/ contained
+syn match   cubescriptFormatArg         /%\d/ contained
 
-" TODO: Rename this appropriately, or find a way to better organize them
 " ===== Escape Sequences ======================================
 " Escapes
-syn match   cubescriptSpecial       /\^[ntf\^\"]/
-" Format Escape (colors)
-syn match   cubescriptEscapeF       /\^f[a-zA-Z0-9]/
-" Format Escape (blinking)
-syn match   cubescriptEscapeFb      /\^fz[a-zA-Z0-9]{1}/
-" Format Escape (RGB/Hex Sequence)
-syn match   cubescriptEscapeFrh     /\^f\[(0x)?[a-fA-F0-9]\+\]/
-" Format Escape (image)
-syn match   cubescriptEscapeFi      /\^f\(\S\+\)/
+syn match   cubescriptEscape            /\^[ntf\^\"]/
+" Basic color escape (ie. ^fy, ^f2, etc) 
+syn match   cubescriptEscapeCol         /\^f[a-zA-Z0-9]/
+" Blinking color escape (ie. ^fzgp)
+syn match   cubescriptEscapeColBlink    /\^fz[a-zA-Z0-9]{1}/
+" Advanced color escape (RGB/Hex Sequence)
+syn match   cubescriptEscapeColAdv      /\^f\[(0x)?[a-fA-F0-9]\+\]/
+" Image insertion escape (ie. ^f(textures/bomb))
+syn match   cubescriptEscapeImg         /\^f\(\S\+\)/
 
 
 " Comment
-syn match   cubescriptComment       ///.*$/ contains=cubescriptTodo
+syn match   cubescriptComment           ///.*$/ contains=cubescriptTodo
 
 
 " Strings
-syn region  cubescriptString        start=/"/ skip=/\^"/ end=/"/ transparent contains=cubescriptEscape,cubescriptFArg
+syn region  cubescriptString            start=/"/ skip=/\^"/ end=/"/ transparent contains=cubescriptEscape,cubescriptFArg
 " Blocks
-syn region  cubescriptBlock         start=/\[/ end=/\]/ transparent
+syn region  cubescriptBlock             start=/\[/ end=/\]/ transparent
 
 
-syn sync    ccomment                cubescriptComment
+syn sync    ccomment                    cubescriptComment
 
 " NOTE: Link this to 'Constant'
 syn keyword cubescriptKeyNames          MOUSE1 MOUSE2 MOUSE3 MOUSE4 MOUSE5 MOUSE6 MOUSE7 MOUSE8 MOUSE9 MOUSE10 BACKSPACE TAB CLEAR RETURN PAUSE ESCAPE SPACE EXCLAIM QUOTEDBL HASH DOLLAR AMPERSAND QUOTE LEFTPAREN RIGHTPAREN ASTERISK PLUS COMMA MINUS PERIOD SLASH COLON SEMICOLON LESS EQUALS GREATER QUESTION AT LEFTBRACKET BACKSLASH RIGHTBRACKET CARET UNDERSCORE BACKQUOTE DELETE KP0 KP1 KP2 KP3 KP4 KP5 KP6 KP7 KP8 KP9 KP_PERIOD KP_DIVIDE KP_MULTIPLY KP_MINUS KP_PLUS KP_ENTER KP_EQUALS UP DOWN RIGHT LEFT INSERT HOME END PAGEUP PAGEDOWN F1 F2 F3 F4 F5 F6 F7 F8 F9 F10 F11 F12 F13 F14 F15 NUMLOCK CAPSLOCK SCROLLOCK RSHIFT LSHIFT RCTRL LCTRL RALT LALT RMETA LMETA LSUPER RSUPER MODE COMPOSE HELP PRINT SYSREQ BREAK MENU
