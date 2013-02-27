@@ -15,10 +15,10 @@ endif
 
 " ===== Statements ============================================
 syn keyword cubescriptConditional       if cond
-syn keyword cubescriptRepeat            do loop loopconcat loopconcatword loopfiles looplist loopwhile while
+syn keyword cubescriptRepeat            loop loopconcat loopconcatword loopfiles looplist loopwhile while
 syn keyword cubescriptLabel             case casef cases
 
-syn keyword cubescriptStatement         alias clearsleep exec exists history local push result
+syn keyword cubescriptStatement         alias clearsleep do exec exists history local push result
 
 syn keyword cubescriptStatementString   concat concatword conout echo error escape filter format strcasecmp strcmp strlen strncasecmp strncmp strreplace strstr substr
 syn keyword cubescriptStatementList     at indexof listdel listfind listlen listsplice prettylist shrinklist sublist
