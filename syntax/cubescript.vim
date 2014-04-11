@@ -13,7 +13,7 @@
 "                   For the C syntax file as a reference for some awesome
 "                   syntax features
 "
-" Other Links:  http://cubescriptengine.com
+" Other Links:  http://cubeengine.com
 "               http://redeclipse.net
 "               [1]: http://www.vim.org/scripts/script.php?script_id=1042
 
