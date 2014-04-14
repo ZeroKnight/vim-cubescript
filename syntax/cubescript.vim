@@ -53,7 +53,7 @@ syn keyword cubescriptStatementGui      cleargui guibackground guibar guibitfiel
 syn keyword cubescriptOperator         acos asin atan cos div divf exp log2 log10 loge max maxf min minf mod modf pow precf rnd sin sqrt tan
 syn match   cubescriptOperator         /[*+-][fs]\?/
 " Bitwise
-syn match   cubescriptOperator         /\(~\|[|&^]~\?\|>>\|<<\)/
+syn match   cubescriptOperator         /\(\~\|[|&^]\~\?\|>>\|<<\)/
 " Boolean/Ternary
 syn match   cubescriptOperator         /||\|&&\|?/
 " Equality
