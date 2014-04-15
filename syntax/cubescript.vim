@@ -149,8 +149,9 @@ syn cluster cubescriptALL contains=ALLBUT,cubescriptKey
 
 " Strings
 " NOTE: CubeScript strings cannot extend over lines, because ';' and '\n'
-" denote the end of a call, and strings are automatically closed if needed
-syn region  cubescriptString            display transparent oneline start=/"/ skip=/\^"/ end=/"/ contains=cubescriptEscape,cubescriptSpecialChar,@cubescriptEscapeGroups
+" denote the end of a call, and strings are automatically closed if needed.
+" That is however, bad practice of course. Close your strings!
+syn region  cubescriptString            display oneline start=/"/ skip=/\^"/ end=/"/ end=/$/ contains=cubescriptSpecial,cubescriptSpecialChar,@cubescriptEscapeGroups
 syn region  cubescriptBlock             start=/\[/ end=/\]/ contains=@cubescriptALL
 syn region  cubescriptParen             start=/(/ end=/)/ contains=@cubescriptALL
 
