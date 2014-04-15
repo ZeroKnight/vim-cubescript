@@ -65,16 +65,16 @@ syn match   cubescriptNumbers           display transparent /\<\d\|\.\d/ contain
 " Do not display OctalError in comments
 syn match   cubescriptNumbersCom        display contained transparent /\<\d\|\.\d/ contains=cubescriptNumber,cubescriptFloat,cubescriptOctal
 " Integer
-syn match   cubescriptNumber            display contained /-\?\d\+\>/
+syn match   cubescriptNumber            display contained /\d\+\>/
 " C-Style Octal number, with the first 0 flagged as special (like c.vim)
 " TODO: Allow 0 flagging to be toggleable by user (ie. let
 " cubescript_no_octal_flag)
-syn match   cubescriptOctal             display contained /-\?0\o\+\>/ contains=cubescriptOctalZero
+syn match   cubescriptOctal             display contained /0\o\+\>/ contains=cubescriptOctalZero
 syn match   cubescriptOctalZero         display contained /\<0/
 " flag an octal number with digits >7
 syn match   cubescriptOctalError        display contained /0\o*[89]\d*/
 " C-Style Hexadecimal number
-syn match   cubescriptNumber            display contained /-\?0x\x\+\>/
+syn match   cubescriptNumber            display contained /0x\x\+\>/
 " Floating point number
 syn match   cubescriptFloat             display contained /\%\(\d\+\)\?\.\d*\>/
 syn case match
