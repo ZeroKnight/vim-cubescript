@@ -53,11 +53,11 @@ syn keyword cubescriptStatementGui      cleargui guibackground guibar guibitfiel
 syn keyword cubescriptOperator         acos asin atan cos div divf exp log2 log10 loge max maxf min minf mod modf pow precf rnd sin sqrt tan
 syn match   cubescriptOperator         /[*+-][fs]\?/
 " Bitwise
-syn match   cubescriptOperator         /\(\~\|[|&^]\~\?\|>>\|<<\)/
+syn match   cubescriptOperator         /\%(\~\|[|&^]\~\?\|>>\|<<\)/
 " Boolean/Ternary
 syn match   cubescriptOperator         /||\|&&\|?/
 " Equality
-syn match   cubescriptOperator         /\(!\|[<>]=\?[fs]\?\|!\?=[fs]\?\)/
+syn match   cubescriptOperator         /\%(!\|[<>]=\?[fs]\?\|!\?=[fs]\?\)/
 
 " ===== Numbers ===============================================
 syn case ignore
@@ -76,7 +76,7 @@ syn match   cubescriptOctalError        display contained /0\o*[89]\d*/
 " C-Style Hexadecimal number
 syn match   cubescriptNumber            display contained /-\?0x\x\+\>/
 " Floating point number
-syn match   cubescriptFloat             display contained /-\?\d\+\.\d*\>/
+syn match   cubescriptFloat             display contained /\%\(\d\+\)\?\.\d*\>/
 syn case match
 
 " ===== Identifiers ==================================
@@ -86,17 +86,17 @@ syn case match
 " Simple lookup, non-nested or recursive ($foo, @bar, etc)
 syn match   cubescriptIdentifier        /[$@]\w\+/
 " Simple lookup with concatenations ($foo@bar, etc)
-syn match   cubescriptIdentifier        contained /[$@]\w\+\(@\?\w\)\+/
+syn match   cubescriptIdentifier        contained /[$@]\w\+\%(@\?\w\)\+/
 " Recursive/nested lookup ($$foo, @@@bar)
-syn match   cubescriptIdentifier        /\(\$\+\|\@\+\)\w\+/
+syn match   cubescriptIdentifier        /\%(\$\+\|@\+\)\w\+/
 " Recursive/nested lookup with concatenations ($$foo@bar, @@@bar@foo)
-syn match   cubescriptIdentifier        contained /\(\$\+\|\@\+\)\w\+\(@\?\w\)\+/
+syn match   cubescriptIdentifier        contained /\%(\$\+\|@\+\)\w\+\%(@\?\w\)\+/
 " Lookup surrounded with '"' or [] and optional recursive/nested lookup
 " NOTE: May need to get clever and use transparency and offsets for hilighting
 " since there are nested brackets and whatnot
-syn match   cubescriptIdentifier        /\(\$\+\|\@\+\)\(\[\|"\)\([$@]*\)?\w\+\(\]\|"\)/
+syn match   cubescriptIdentifier        /\%(\$\+\|@\+\)\%(\[\|"\)\%([$@]*\)?\w\+\%(\]\|"\)/
 
-"syn match   cubescriptIdentifier        /\(\$\+\|@\+\)[$@\S]\+/
+"syn match   cubescriptIdentifier        /\%(\$\+\@\+\)[$@\S]\+/
 
 " TODO: Special matching for $arg1 to $arg24 (flag > $arg24 as error)
 
@@ -121,16 +121,16 @@ syn match   cubescriptEscapeCol         /\^f[[:alnum:]]/
 " Blinking color escape (ie. ^fzgp)
 syn match   cubescriptEscapeColBlink    /\^fz[[:alnum:]]{2}/
 " Advanced color escape (RGB/Hex Sequence)
-syn match   cubescriptEscapeColAdv      /\^f\[\(0[xX]\x\+\|\d\+\)\]/
+syn match   cubescriptEscapeColAdv      /\^f\[\%(0[xX]\x\+\|\d\+\)\]/
 " Image insertion escape (ie. ^f(textures/bomb))
 syn match   cubescriptEscapeImg         /\^f(\S\+)/
 " Erroneously formed escape sequences
 syn match   cubescriptEscapeError       /\^[^ntf^"]/
 syn match   cubescriptEscapeError       /\^f[^[:alnum:]]/
-syn match   cubescriptEscapeError       /\^fz\([^[:alnum:]]{1,2}\|[[:alnum:]][^[:alnum:]]\)/
+syn match   cubescriptEscapeError       /\^fz\%([^[:alnum:]]{1,2}\|[[:alnum:]][^[:alnum:]]\)/
 " NOTE: may need to explicitly exclude \n along with \X
-syn match   cubescriptEscapeError       /\^f\[0[xX]\(\x*\X+\x*\)*\]/
-syn match   cubescriptEscapeError       /\^f(\(\S* \S*\)*)/
+syn match   cubescriptEscapeError       /\^f\[0[xX]\%(\x*\X+\x*\)*\]/
+syn match   cubescriptEscapeError       /\^f(\%(\S* \S*\)*)/
 syn cluster cubescriptEscapeGroups contains=cubescriptEscape,cubescriptEscapeCol,cubescriptEscapeColBlink,cubescriptEscapeColAdv,cubescriptEscapeImg
 
 syn match   cubescriptDelimiter         /;/
