@@ -142,7 +142,8 @@ syn match   cubescriptSpecial           display contained /%[1-9]/
 syn match   cubescriptComment           display "//.*$" contains=cubescriptTodo,cubescriptNumbersCom
 
 " Various common comment tags
-syn keyword cubescriptTodo              contained TODO FIXME XXX NOTE HACK BUG WARNING ATTENTION ALERT DANGER TBD TASK NOTICE TEST DEBUG DEPRECATED ??? !!! WTF
+syn keyword cubescriptTodo              contained TODO FIXME XXX NOTE HACK BUG WARNING ATTENTION ALERT DANGER TBD TASK NOTICE TEST DEBUG DEPRECATED WTF
+syn match   cubescriptTodo              contained /\%(???\|!!!\)/
 
 syn cluster cubescriptALL contains=ALLBUT,cubescriptKey
 
