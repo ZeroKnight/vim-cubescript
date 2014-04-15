@@ -139,7 +139,7 @@ syn match   cubescriptDelimiter         /;/
 syn match   cubescriptSpecial           display contained /%[1-9]/
 
 " Comment (C++ one-line style)
-syn match   cubescriptComment           display "//.*$" contains=cubescriptTodo
+syn match   cubescriptComment           display "//.*$" contains=cubescriptTodo,cubescriptNumbersCom
 
 " Various common comment tags
 syn keyword cubescriptTodo              contained TODO FIXME XXX NOTE HACK BUG WARNING ATTENTION ALERT DANGER TBD TASK NOTICE TEST DEBUG DEPRECATED ??? !!! WTF
